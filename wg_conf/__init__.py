@@ -62,8 +62,23 @@ class WireguardConfig:
         for line in self._lines:
             if line.strip() == '[Interface]':
                 section_started = True
-            if line.strip() in ['', '[Peer]']:
+            if section_started and line.strip() in ['', '[Peer]']:
                 break
             index = index + 1
         self._lines.insert(index, new_line)
+        self.parse_lines()
+
+
+    def del_interface_attr(self, key):
+        section_started = False
+        index = 0
+        for line in self._lines:
+            if line.strip() == '[Interface]':
+                section_started = True
+            if section_started and line.strip() in ['', '[Peer]']:
+                break
+            index = index + 1
+        for i in range(0, index):
+            if self.parse_line(self._lines[i])[0].lower() == key.lower():
+                self._lines.pop(i)
         self.parse_lines()
