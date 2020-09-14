@@ -1,3 +1,5 @@
+from itertools import groupby
+
 class WireguardConfig:
     def __init__(self, file_name:str=None):
         self._file_name = file_name
@@ -31,6 +33,7 @@ class WireguardConfig:
 
 
     def parse_lines(self):
+        self._lines = [line for line, _ in groupby(self._lines)]
         data_lines = [self.parse_line(line) for line in self._lines]
         section = dict()
         current_section = ''
