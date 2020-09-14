@@ -155,6 +155,7 @@ class WireguardConfig:
         self._lines.append('')
         self._lines.append('[Peer]')
         self._lines.append(f'PublicKey = {publickey}')
+        self.parse_lines()
 
 
 if __name__ == '__main__':
