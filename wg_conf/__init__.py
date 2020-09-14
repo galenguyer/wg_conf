@@ -146,3 +146,7 @@ class WireguardConfig:
     def set_peer_attr(self, publickey, key, value, comment=None):
         self.del_set_attr(publickey, key)
         self.add_set_attr(publickey, key, value, comment)
+
+
+if __name__ == '__main__':
+    print('This is a library and not meant to be called directly. Please import it using "import wg_conf"')
