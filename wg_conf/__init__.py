@@ -48,4 +48,6 @@ class WireguardConfig:
                 section[line[0]] = line[1]
         if current_section == '[Peer]':
             self.peers[section['PublicKey']] = section
+        if current_section == '[Interface]':
+            self.interface = section
         
