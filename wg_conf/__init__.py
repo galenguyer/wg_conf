@@ -62,8 +62,8 @@ class WireguardConfig:
         for line in self._lines:
             if line.strip() == '[Interface]':
                 section_started = True
-                print('starting index: ' + str(index))
             if line.strip() in ['', '[Peer]']:
                 break
             index = index + 1
         self._lines.insert(index, new_line)
+        self.parse_lines()
