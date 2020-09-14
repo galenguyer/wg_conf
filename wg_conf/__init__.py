@@ -148,5 +148,14 @@ class WireguardConfig:
         self.add_set_attr(publickey, key, value, comment)
 
 
+    def create_peer(self, publickey):
+        for line in self._lines:
+            if parse_line(line)[1] == publickey:
+                raise Exception(f'A peer with the public key {publickey} already exists, cannot create a new one')
+        self._lines.append('')
+        self._lines.append('[Peer]')
+        self._lines.append(f'PublicKey = {publickey}')
+
+
 if __name__ == '__main__':
     print('This is a library and not meant to be called directly. Please import it using "import wg_conf"')
