@@ -33,6 +33,8 @@ class WireguardConfig:
 
 
     def parse_lines(self):
+        self.interface = None
+        self.peers = dict()
         self._lines = [line for line, _ in groupby(self._lines)]
         data_lines = [self.parse_line(line) for line in self._lines]
         section = dict()
