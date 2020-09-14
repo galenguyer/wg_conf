@@ -118,4 +118,3 @@ class WireguardConfig:
                 raise Exception(f'Key {key} already found in Peer {publickey}. Use set_peer_attr to overwrite.')
         self._lines.insert(end_index, new_line)
         self.parse_lines()
-        print(self._lines)
