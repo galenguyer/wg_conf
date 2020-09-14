@@ -1,9 +1,9 @@
 class WireguardConfig:
     def __init__(self, file_name:str=None):
-        self.file_name = file_name
+        self._file_name = file_name
         self.interface = None
         self.peers = dict()
-        self.lines = []
+        self._lines = []
         self.read_file()
         self.parse_lines()
 
@@ -11,14 +11,14 @@ class WireguardConfig:
     def read_file(self):
         self.interface = None
         self.peers = dict()
-        self.lines = []
-        with open(self.file_name, 'r') as input_file:
-            self.lines = [line.strip() for line in input_file.readlines()]
+        self._lines = []
+        with open(self._file_name, 'r') as input_file:
+            self._lines = [line.strip() for line in input_file.readlines()]
 
 
     def write_file(self):
-        with open(self.file_name, 'w') as output_file:
-            output_file.writelines([line + '\n' for line in self.lines])
+        with open(self._file_name, 'w') as output_file:
+            output_file.writelines([line + '\n' for line in self._lines])
 
 
     @staticmethod
@@ -31,7 +31,7 @@ class WireguardConfig:
 
 
     def parse_lines(self):
-        data_lines = [self.parse_line(line) for line in self.lines]
+        data_lines = [self.parse_line(line) for line in self._lines]
         section = dict()
         current_section = ''
         for line in data_lines:
