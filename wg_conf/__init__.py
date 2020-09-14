@@ -65,6 +65,9 @@ class WireguardConfig:
             if section_started and line.strip() in ['', '[Peer]']:
                 break
             index = index + 1
+        for i in range(0, index):
+            if self.parse_line(self._lines[i])[0].lower() == key.lower():
+                raise Exception(f'Key {key} already found in Interface. Use set_interface_attr to overwrite.')
         self._lines.insert(index, new_line)
         self.parse_lines()
 
@@ -82,3 +85,8 @@ class WireguardConfig:
             if self.parse_line(self._lines[i])[0].lower() == key.lower():
                 self._lines.pop(i)
         self.parse_lines()
+
+
+    def set_interface_attr(self, key, value, comment=None):
+        self.del_interface_attr(key)
+        self.add_interface_attr(key, value, comment)
