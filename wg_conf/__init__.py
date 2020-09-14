@@ -163,5 +163,27 @@ class WireguardConfig:
         self.parse_lines()
 
 
+    def del_peer(self, publickey):
+        start_index = 1
+        end_index = 0
+        section_started = False
+        correct_section = False
+        for line in self._lines:
+            if line.strip() == '[Peer]':
+                section_started = True
+                start_index = start_index + 1
+            if section_started and not correct_section:
+                pline = self.parse_line(line)
+                if pline[0].lower() == 'publickey' and pline[1] == publickey:
+                    correct_section = True
+                start_index = start_index + 1
+            if correct_section and line.strip() in ['', '[Peer]']:
+                break
+            end_index = end_index + 1
+        for _ in range(start_index, end_index):
+            self._lines.pop(start_index)
+        self.parse_lines()
+
+
 if __name__ == '__main__':
     print('This is a library and not meant to be called directly. Please import it using "import wg_conf"')
