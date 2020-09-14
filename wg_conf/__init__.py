@@ -50,4 +50,20 @@ class WireguardConfig:
             self.peers[section['PublicKey']] = section
         if current_section == '[Interface]':
             self.interface = section
-        
+
+    
+    def add_interface_attr(self, key, value, comment=None):
+        if comment == None:
+            new_line = f'{key} = {value}'
+        else:
+            new_line = f'{key} = {value} # {comment}'
+        section_started = False
+        index = 0
+        for line in self._lines:
+            if line.strip() == '[Interface]':
+                section_started = True
+                print('starting index: ' + str(index))
+            if line.strip() in ['', '[Peer]']:
+                break
+            index = index + 1
+        self._lines.insert(index, new_line)
