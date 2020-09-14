@@ -141,3 +141,8 @@ class WireguardConfig:
             if self.parse_line(self._lines[i])[0].lower() == key.lower():
                 self._lines.pop(i)
         self.parse_lines()
+
+
+    def set_peer_attr(self, publickey, key, value, comment=None):
+        self.del_set_attr(publickey, key)
+        self.add_set_attr(publickey, key, value, comment)
