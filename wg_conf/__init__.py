@@ -185,5 +185,13 @@ class WireguardConfig:
         self.parse_lines()
 
 
+    def get_peer_keys(self):
+        return self.peers.keys()
+
+
+    def get_peer(self, publickey):
+        return self.peers.get(publickey)
+
+
 if __name__ == '__main__':
     print('This is a library and not meant to be called directly. Please import it using "import wg_conf"')
