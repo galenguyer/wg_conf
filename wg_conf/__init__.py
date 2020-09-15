@@ -119,6 +119,7 @@ class WireguardConfig:
                 break
             end_index = end_index + 1
             index = index + 1
+        end_index = end_index - 1
         for i in range(start_index, end_index):
             if self.parse_line(self._lines[i])[0].lower() == key.lower():
                 raise Exception(f'Key {key} already found in Peer {publickey}. Use set_peer_attr to overwrite.')
@@ -144,6 +145,7 @@ class WireguardConfig:
                 break
             end_index = end_index + 1
             index = index + 1
+        end_index = end_index - 1
         for i in range(start_index, end_index):
             if self.parse_line(self._lines[i])[0].lower() == key.lower():
                 self._lines.pop(i)
@@ -183,6 +185,7 @@ class WireguardConfig:
                 break
             end_index = end_index + 1
             index = index + 1
+        end_index = end_index - 1
         for _ in range(start_index, end_index):
             self._lines.pop(start_index)
         self.parse_lines()
