@@ -40,7 +40,7 @@ class WireguardConfig:
         section = dict()
         current_section = ''
         for line in data_lines:
-            if line[0] is '':
+            if line[0] == '':
                 continue
             if line[0] in ['[Interface]', '[Peer]']:
                 if current_section == '[Interface]':
@@ -126,22 +126,23 @@ class WireguardConfig:
 
 
     def del_peer_attr(self, publickey, key):
-        start_index = 1
+        index = 0
+        start_index = 0
         end_index = 0
         section_started = False
         correct_section = False
         for line in self._lines:
             if line.strip() == '[Peer]':
                 section_started = True
-                start_index = start_index + 1
+                start_index = index
             if section_started and not correct_section:
                 pline = self.parse_line(line)
                 if pline[0].lower() == 'publickey' and pline[1] == publickey:
                     correct_section = True
-                start_index = start_index + 1
             if correct_section and line.strip() in ['', '[Peer]']:
                 break
             end_index = end_index + 1
+            index = index + 1
         for i in range(start_index, end_index):
             if self.parse_line(self._lines[i])[0].lower() == key.lower():
                 self._lines.pop(i)
