@@ -155,7 +155,7 @@ class WireguardConfig:
 
     def create_peer(self, publickey):
         for line in self._lines:
-            if parse_line(line)[1] == publickey:
+            if self.parse_line(line)[1] == publickey:
                 raise Exception(f'A peer with the public key {publickey} already exists, cannot create a new one')
         self._lines.append('')
         self._lines.append('[Peer]')
