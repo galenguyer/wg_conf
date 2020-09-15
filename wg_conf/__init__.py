@@ -183,7 +183,7 @@ class WireguardConfig:
                 break
             end_index = end_index + 1
             index = index + 1
-        for _ in range(start_index, min(end_index, (len(self._lines)-1))):
+        for _ in range(start_index, min(end_index, (len(self._lines)))):
             self._lines.pop(start_index)
         self.parse_lines()
 
