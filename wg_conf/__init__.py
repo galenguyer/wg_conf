@@ -151,7 +151,7 @@ class WireguardConfig:
 
     def set_peer_attr(self, publickey, key, value, comment=None):
         self.del_peer_attr(publickey, key)
-        self.add_set_attr(publickey, key, value, comment)
+        self.add_peer_attr(publickey, key, value, comment)
 
 
     def create_peer(self, publickey):
