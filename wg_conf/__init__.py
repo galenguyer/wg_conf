@@ -102,22 +102,23 @@ class WireguardConfig:
             new_line = f'{key} = {value}'
         else:
             new_line = f'{key} = {value} # {comment}'
-        start_index = 1
+        index = 0
+        start_index = 0
         end_index = 0
         section_started = False
         correct_section = False
         for line in self._lines:
             if line.strip() == '[Peer]':
                 section_started = True
-                start_index = start_index + 1
+                start_index = index
             if section_started and not correct_section:
                 pline = self.parse_line(line)
                 if pline[0].lower() == 'publickey' and pline[1] == publickey:
                     correct_section = True
-                start_index = start_index + 1
             if correct_section and line.strip() in ['', '[Peer]']:
                 break
             end_index = end_index + 1
+            index = index + 1
         for i in range(start_index, end_index):
             if self.parse_line(self._lines[i])[0].lower() == key.lower():
                 raise Exception(f'Key {key} already found in Peer {publickey}. Use set_peer_attr to overwrite.')
