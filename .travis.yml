@@ -1,0 +1,9 @@
+language: python
+python:
+  - "3.6"
+
+install:
+  - "pip install pylint pylint-quotes"
+
+script:
+  - "pylint --load-plugins pylint_quotes wg_conf"
