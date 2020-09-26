@@ -72,7 +72,7 @@ class WireguardConfig:
             index = index + 1
         for i in range(0, index):
             if self.parse_line(self._lines[i])[0].lower() == key.lower():
-                raise Exception(f'Key {key} already found in Interface. Use set_interface_attr to overwrite.')
+                raise Exception(f'Attribute {key} already found in Interface. Use set_interface_attr to overwrite.')
         self._lines.insert(index, new_line)
         self.parse_lines()
 
@@ -132,7 +132,7 @@ class WireguardConfig:
             index = index + 1
         for i in range(start_index, min(end_index, (len(self._lines)-1))):
             if self.parse_line(self._lines[i])[0].lower() == key.lower():
-                raise Exception(f'Key {key} already found in Peer {publickey}. Use set_peer_attr to overwrite.')
+                raise Exception(f'Attribute {key} already found in Peer {publickey}. Use set_peer_attr to overwrite.')
         self._lines.insert(end_index, new_line)
         self.parse_lines()
 
