@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="wg_conf",
-    version="0.9.2",
+    version="1.0.0",
     author="Galen Guyer",
     author_email="galen@galenguyer.com",
     description="Manage Wireguard configuration files",
@@ -18,7 +18,7 @@ setuptools.setup(
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
-        "Development Status :: 4 - Beta"
+        "Development Status :: 5 - Production/Stable"
     ],
     python_requires='>=3.6',
 )
