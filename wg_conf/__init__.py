@@ -93,17 +93,6 @@ class WireguardConfig:
 
 
     def set_interface_attr(self, key, value, comment=None):
-        section_started = False
-        index = 0
-        for line in self._lines:
-            if line.strip() == '[Interface]':
-                section_started = True
-            if section_started and line.strip() in ['', '[Peer]']:
-                break
-            index = index + 1
-        for i in range(0, index):
-            if self.parse_line(self._lines[i])[0].lower() == key.lower():
-                raise Exception(f'Attribute {key} already found in Interface. Use set_interface_attr to overwrite.')
         self.del_interface_attr(key)
         self.add_interface_attr(key, value, comment)
 
@@ -162,26 +151,6 @@ class WireguardConfig:
 
 
     def set_peer_attr(self, publickey, key, value, comment=None):
-        index = 0
-        start_index = 0
-        end_index = 0
-        section_started = False
-        correct_section = False
-        for line in self._lines:
-            if line.strip() == '[Peer]':
-                section_started = True
-                start_index = index
-            if section_started and not correct_section:
-                pline = self.parse_line(line)
-                if pline[0].lower() == 'publickey' and pline[1] == publickey:
-                    correct_section = True
-            if correct_section and line.strip() in ['', '[Peer]']:
-                break
-            end_index = end_index + 1
-            index = index + 1
-        for i in range(start_index, min(end_index, (len(self._lines)-1))):
-            if self.parse_line(self._lines[i])[0].lower() == key.lower():
-                raise Exception(f'Attribute {key} already found in Peer {publickey}. Use set_peer_attr to overwrite.')
         self.del_peer_attr(publickey, key)
         self.add_peer_attr(publickey, key, value, comment)
 
