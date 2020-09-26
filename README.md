@@ -69,3 +69,12 @@ Delete a peer given a public key:
 wc.del_peer('PeerPublicKey')
 ```
 
+### Build pypi package
+Build a binary and source distribution for pypi
+```
+python3 setup.py sdist bdist_wheel
+```
+Push to pypi
+```
+python3 -m twine upload dist/*
+```
