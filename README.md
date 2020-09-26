@@ -2,6 +2,7 @@
 
 ![GitHub](https://img.shields.io/github/license/galenguyer/wg_conf?style=for-the-badge) 
 ![PyPI](https://img.shields.io/pypi/v/wg-conf?style=for-the-badge)
+![Travis (.org)](https://img.shields.io/travis/galenguyer/wg_conf?style=for-the-badge)
 
 Python library to read, edit, and save [Wireguard](https://www.wireguard.com/) configuration files
 
