@@ -6,6 +6,7 @@
 
 Python library to read, edit, and save [Wireguard](https://www.wireguard.com/) configuration files
 
+
 ### Installation
 
 Install using pip:
@@ -71,11 +72,15 @@ wc.del_peer('PeerPublicKey')
 ```
 
 ### Build pypi package
-Build a binary and source distribution for pypi
+* Clone the git repo.
+* Ensure that [`build`](https://github.com/pypa/build) is installed.
+* Build the packages by invoking in the repo root:
+
+```bash
+python3 -m build
 ```
-python3 setup.py sdist bdist_wheel
-```
-Push to pypi
-```
+
+* Push them to pypi
+```bash
 python3 -m twine upload dist/*
 ```
