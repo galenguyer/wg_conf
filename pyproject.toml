@@ -1,5 +1,27 @@
 [build-system]
-requires = ["setuptools>=44", "wheel", "setuptools_scm[toml]>=3.4.3"]
+requires = ["setuptools>=61.2", "setuptools_scm[toml]>=7"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "wg_conf"
+authors = [{name = "Galen Guyer", email = "galen@galenguyer.com"}]
+description = "Manage Wireguard configuration files"
+readme = "README.md"
+classifiers = [
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Development Status :: 5 - Production/Stable",
+]
+urls = {Homepage = "https://github.com/galenguyer/wg_conf"}
+requires-python = ">=3.6"
+dynamic = ["version"]
+
+[tool.setuptools]
+include-package-data = false
+
+[tool.setuptools.packages]
+find = {namespaces = false}
 
 [tool.setuptools_scm]
